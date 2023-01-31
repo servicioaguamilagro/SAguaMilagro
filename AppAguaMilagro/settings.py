@@ -13,7 +13,11 @@ import os
 from pathlib import Path
 import dj_database_url
 import locale
-locale.setlocale(locale.LC_ALL, 'es_ES.utf8')
+try:
+    locale.setlocale(locale.LC_ALL, 'es_ES.utf8')
+except Exception:
+    locale.setlocale(locale.LC_ALL, 'es_ES.UTF-8')
+        
 #locale.setlocale(locale.LC_TIME, '')
 
 #redireccionar cuando no esta logeado
