@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{% block title %}Servic... Editar cifra{% endblock %}
+
+{% block content %}
+    <div class="container mb-1 " style="max-width: 600px;">
+        <h4 class="text-black-50 text-center py-3">Editar cifra del medidor '{{ cliente.medidor }}' de {{ cliente.nombres }} del mes de <b>{{ cifra.mes }} del {{ cifra.anio }}</b></h4>
+    </div>
+    <div class="container " style="max-width: 500px;">
+        <p> 
+            <b>Medidor: </b>{{ cliente.medidor }} &nbsp;&nbsp;
+            <b>Perteneciente a: </b>{{ cliente.nombres }} {% if cliente.apellidos == None %} {% else %} {{ cliente.apellidos }} {% endif %} / {{ cliente.cedula }}&nbsp;&nbsp;
+            <b>Detalle: </b>{% if cliente.detalle == None %} - {% else %} {{ cliente.detalle }} {% endif %}
+        </p>
+    </div>
+    <div class="container " style="max-width: 500px;">
+        <div class="alert alert-primary" role="alert">
+            <h6>Actualizar el valor de la cifra '<b>{{ cifra.cifra }}</b>' del mes de <b>{{ cifra.mes }} del {{ cifra.anio }}</b>:</h6>
+            <form action="/actualizarcifra/{{cifra.id}}" class="d-flex" method="POST">
+                {% csrf_token %}
+                <input class="form-control me-2" type="number" placeholder="Cifra actual del medidor" aria-label="Search" name="cifra" value="{{ cifra.cifra }}" required>
+                <button class="btn btn-success" type="submit">Guardar</button>&nbsp;&nbsp;
+                <a class="btn btn-danger " href="/ingresarcifra/{{cliente.id}}">Cancelar</a>
+            </form>
+            
+        </div>
+    </div>
+{% endblock %} 

@@ -1,0 +1,26 @@
+{% extends "home.html" %}
+
+{% block title %}Servic... Eliminar cliente{% endblock %}
+
+{% block content %}
+    <div class="container mb-5 " style="max-width: 450px;">
+        <h4 class="text-black-50 text-center py-1"><br><i class="fa-solid fa-triangle-exclamation"></i> ¿Estás seguro de continuar? </h4>
+    </div>
+    <div class="container " style="max-width: 500px;">
+        <form action="/confirmareliminarcliente/{{cliente.id}}" method="POST"> 
+            {% csrf_token %}   
+            <div class="alert alert-danger" role="alert">
+                Estas a punto de eliminar al usuario {{ cliente.nombres }} {{ cliente.apellidos }}, número de medidor: {{ cliente.medidor }}, identificación: {{ cliente.cedula }}...<br>
+                <br>Ten en cuenta que:<br>
+                <br>&nbsp;&bull;&nbsp;La información no podrá ser recuperada.<br>
+                &nbsp;&bull;&nbsp;Se eliminarán otros datos del usuario.<br>
+                &nbsp;&bull;&nbsp;Se puede perder información importante.<br>
+                <br>¿Realmente deseas continuar?
+            </div>
+            <div class="mb-1" style ="text-align: center">
+                <a class="btn btn-outline-secondary" href="/clientes"><i class="fa-solid fa-chevron-left"></i> Regresar</a>
+                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-x"></i> Confirmar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %} 

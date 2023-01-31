@@ -1,0 +1,93 @@
+{% extends "home.html" %}
+
+{% block title %}Servic... Configuraciones{% endblock %}
+
+{% block content %}
+    <div class="container mb-1 " style="max-width: 800px;">
+        <h2 class="text-black-50 text-center py-5"><i class="fa-solid fa-gears"></i>&nbsp; Configuraciones del Sistema </h2>
+    </div>
+    
+    <div class="container mb-1 " style="max-width: 1000px;">
+    <div class="grey-bg container-fluid">
+        <section id="minimal-statistics">
+          <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12"> 
+                <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-body text-primary">
+                        <h3><i class="fa-solid fa-user-plus"></i></h3><br>
+                        <span><a class="btn btn-sm btn-primary " href="/nuevoadministrador">Perfil y administradores</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card border-secondary mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-body text-secondary">
+                        <h3><i class="fa-solid fa-hammer"></i></h3><br>
+                        <span><a class="btn btn-sm btn-secondary " href="/admin">Panel Administrador</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card border-danger mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-body text-danger">
+                        <h3><i class="fa-solid fa-pen-to-square"></i></h3><br>
+                        <span><a class="btn btn-sm btn-danger" href="/admin/auth/user/">Permisos admin y más</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-body text-primary">
+                        <h3><i class="fa-solid fa-list"></i></h3><br>
+                        <span><a class="btn btn-sm btn-primary" href="/valoresbase">Valores base</a></span>
+                    </div>
+                </div>
+            </div>
+          </div><br>
+        </section>
+    </div>
+    </div>
+    <div class="container mb-1 " style="max-width: 1000px;">
+        <div class="grey-bg container-fluid">
+        <section id="minimal-statistics">
+          <h4>Valores base del servicio</h4><br>
+          <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card border-info mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-body text-info">
+                        <h3>{{ base }} m</h3><br>
+                        <span>Cifra base</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card border-info mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-body text-info">
+                        <h3>$ {{ valorbase }} </h3><br>
+                        <span>Valor de la base</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card border-info mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-body text-info">
+                        <h3>$ {{ adicional }} </h3><br>
+                        <span>Adicional por m</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card border-info mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-body text-info">
+                        <h3>{{ porcentaje }} %</h3><br>
+                        <span>Porcentaje por mora</span>
+                    </div>
+                </div>
+            </div>
+            
+          </div>
+        
+        </section>
+      </div>
+    </div>
+{% endblock %} 

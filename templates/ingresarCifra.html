@@ -1,0 +1,77 @@
+{% extends "home.html" %}
+
+{% block title %}Servic... Nueva cifra{% endblock %}
+
+{% block content %}
+<div class="container mb-1 " style="max-width: 800px;">
+    <h4 class="text-black-50 text-center py-3">Cifras del medidor '{{ cliente.medidor }}' de {{ cliente.nombres }}</h4>
+</div>
+<div class="container " style="max-width: 500px;">
+    <p> 
+        <b>Medidor: </b>{{ cliente.medidor }} &nbsp;&nbsp;
+        <b>Perteneciente a: </b>{{ cliente.nombres }} {% if cliente.apellidos == None %} {% else %} {{ cliente.apellidos }} {% endif %} / {{ cliente.cedula }}&nbsp;&nbsp;
+    </p>
+</div>
+<div class="container " style="max-width: 500px;">
+    {% if mes == umes %}
+        <div class="alert alert-success" role="alert">
+            <h6><i class="fa-solid fa-check"></i> La cifra del mes de <b>{{ mes }} del {{ año }}</b> ya a sido registrada.</h6>
+        </div>    
+    {% else %}
+        <div class="alert alert-primary" role="alert">
+            <h6>Agregar cifra actual del medidor, correspondiente al mes de <b>{{ mes }} del {{ año }}</b></h6>
+            <form class="d-flex" method="POST">
+                {% csrf_token %}
+                <input class="form-control me-2" type="number" placeholder="Cifra actual del medidor" aria-label="Search" name="cifra" value="" required>
+                <button class="btn btn-success" type="submit">Agregar</button>
+            </form>
+            <p><small>* Nota: una vez agregada la cifra no se podra eliminar!</small></p>
+        </div>
+    {% endif %}
+</div>
+<div class="container py-4" style="max-width: 800px;">
+    {% if messages %}
+        {% for m in messages %}
+            <div class="alert alert-info" role="alert">
+                  {{ m }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Mes</th>
+                <th>Año</th>
+                <th>Cifra</th>
+                <th>Estado</th>
+                <!--<th>Correo</th>
+                <th>Detalle</th>
+                <th>Dirección</th>
+                <th>Celular</th>
+                <th>Deuda</th>-->
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tcifras in tcifras %}
+            <tr>
+              <th scope="row">{{ tcifras.mes }}</th>
+                <td>{{ tcifras.anio }}</td>
+                <td>{{ tcifras.cifra }}</td>
+                <td>{% if tcifras.estado == 'n' %} Pendiente {% else %} Pagado {% endif %}</td>
+                <!--<td>{{ cliente.email }}</td>
+                <td>{{ cliente.detalle }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.celular }}</td>
+                <td>{{ cliente.deuda }}</td>-->
+                <td>
+                    {% if tcifras.estado == 'n' %} <a class="btn btn-sm btn-outline-info " href="/editarcifra/{{tcifras.id}}"><i class="fa-solid fa-pen-to-square"></i></a> {% endif %}
+                    
+                </td>
+            </tr>
+            {% endfor %} 
+            </tbody>
+    </table> 
+    <a class="btn btn-outline-secondary" href="/cifras">Regresar</a> &nbsp;&nbsp;    
+</div>
+{% endblock %} 

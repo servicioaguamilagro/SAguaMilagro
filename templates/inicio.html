@@ -1,0 +1,90 @@
+{% extends "home.html" %}
+
+{% block title %}Servicio de agua Milagro{% endblock %}
+
+{% block content %}
+    <div class="container mb-5 " style="max-width: 450px;">
+        <h1 class="text-black-50 text-center py-1"><br>Bienvenid@ {{ user }}!</h1>
+    </div>
+    <div class="container " style="max-width: 500px;">
+        <form class="d-flex" method="POST">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Ej. 'Edhisson Sanmartin', '0705643853'" aria-label="Search" name="buscar" required>
+            <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <p class="text-secondary text-left">
+            Buscar por nombres personales, razón social, cédula de identidad o RUC.
+        </p>
+    </div>
+    <div class="container" style="max-width: 1000px;">
+        <br><p class="text-info">Valores base actuales del servicio:</p>
+    </div>
+    <div class="container py-1 " style="max-width: 1000px;">
+        <div class="grey-bg container-fluid">
+            <section id="minimal-statistics">
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card border-info mb-3 text-center" style="max-width: 18rem;">
+                            <div class="card-body text-info">
+                                <h3>{{ base }} m<sup>3</sup> </h3>
+                                <span>Cifra base</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card border-info mb-3 text-center" style="max-width: 18rem;">
+                            <div class="card-body text-info">
+                                <h3>$ {{ valorbase }} </h3>
+                                <span>Valor de la base</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card border-info mb-3 text-center" style="max-width: 18rem;">
+                            <div class="card-body text-info">
+                                <h3>$ {{ adicional }} </h3>
+                                <span>Adicional por m<sup>3</sup></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card border-info mb-3 text-center" style="max-width: 18rem;">
+                            <div class="card-body text-info">
+                                <h3>{{ porcentaje }} %</h3>
+                                <span>Porcentaje por mora</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                  </div>
+            </section>
+        </div>
+    </div>
+    <div class="container" style="max-width: 1000px;">
+        <p class="text-success">Valores recaudados hasta la fecha:</p>
+    </div>
+    <div class="container py-1 " style="max-width: 1000px;">
+        <div class="grey-bg container-fluid">
+            <section id="minimal-statistics">
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card border-success mb-3 text-center" style="max-width: 18rem;">
+                            <div class="card-body text-success">
+                                <h3>$ {{ cobros_totales }}</h3>
+                                <span>{{ mes }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card border-success mb-3 text-center" style="max-width: 18rem;">
+                            <div class="card-body text-success">
+                                <h3>$ {{ cobros_actuales }} </h3>
+                                <span>Total</span>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %} 

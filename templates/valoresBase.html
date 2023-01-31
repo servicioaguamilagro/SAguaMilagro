@@ -1,0 +1,85 @@
+{% extends "home.html" %}
+
+{% block title %}Servic... Valores base{% endblock %}
+
+{% block content %}
+<div class="container mb-1 " style="max-width: 800px;">
+    <h2 class="text-black-50 text-center py-3"><i class="fa-solid fa-square-plus"></i>&nbsp; Ingresar nuevos valores base </h2>
+</div>
+<div class="container mb-1 " style ="max-width: 900px;">
+    <form class="d-flex" >
+        <div style ="max-width: 200px;">
+            <a class="btn btn-outline-secondary" href="/configuraciones"><i class="fa-solid fa-chevron-left"></i> Regregar</a>&nbsp;&nbsp;&nbsp;
+        </div>
+        <div style ="max-width: 700px;">
+            <p class="text-danger py-1"><b>Nota:</b> los valores base no se pueden editar ni eliminar, si agrega nuevos valores no afectaran a las cifras ya registradas, antes de agregar nuevos valores asegurese de haber ingresado todas las cifras correspondientes al mes.</p>  
+        </div>
+   </form>
+</div>
+<div class="container py-1">      
+    <div class="row ">
+        <div class="col-md-5">
+            <div class="container " style="max-width: 350px;">
+                {% if messages %}
+                    {% for m in messages %}
+                        <div class="alert alert-secondary" role="alert">
+                            {{ m }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="alert alert-secondary py-3" >
+                    <h6 class="text-center">Ingresar valores</b></h6>
+                    <form  method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="mb-1">
+                            <label for="">Valor de la base:</label>
+                            <input type="number" min="0" step=".01" class="form-control" placeholder="Ej. '2,00' '3,10'" name="valorbase"  required>
+                        </div>
+                        <div class="mb-1">
+                            <label for="">Base: metros cúbicos</label>
+                            <input type="number" min="1" class="form-control" placeholder="Ej. '20' '35'" name="base" required>
+                        </div>
+                        <div class="mb-1">
+                            <label for="">Valor Adicional:</label>
+                            <input type="number" min="0" step=".01" class="form-control" placeholder="Ej. '0,10' '0,25'" name="valoradicional"  required>
+                        </div>
+                        <div class="mb-1">
+                            <label for="">Porcentaje por mora:</label>
+                            <input type="number" min="1"  class="form-control" placeholder="Ej. '20' '10'" name="mora"  required>
+                        </div><br>
+                        <div class="mb-1" style ="text-align: center">
+                            <button class="btn btn-primary" type="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="container " style="max-width: 550px;">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th >Valor de la base</th>
+                            <th>Base</th>
+                            <th>Valor adicional</th>
+                            <th>Porcentaje mora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for valor in valores %}
+                        <tr>
+                        <th scope="row">{{ valor.id }} </th>
+                            <td class="text-center">$ &nbsp;{{ valor.valor_cifra_base }}</td>
+                            <td class="text-center">{{ valor.base }}&nbsp;m</td>
+                            <td class="text-center">$ &nbsp;{{ valor.valor_adicional }}</td>
+                            <td class="text-center">{{ valor.porcentaje_mora }}&nbsp;%</td>
+                        </tr>
+                        {% endfor %} 
+                        </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

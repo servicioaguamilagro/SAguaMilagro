@@ -1,0 +1,68 @@
+{% extends "home.html" %}
+
+{% block title %}Servic... Cifras{% endblock %}
+
+{% block content %}
+<div class="container mb-1 " style="max-width: 800px;">
+    <h4 class="text-black-50 text-center py-3"> Cifras de <b>{{ f }}</b></h4>
+</div>
+<div class="container " style="max-width: 800px;">
+    <form class="d-flex" method="GET">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Buscar usuario por nombres, razón social, número de medidor o número de cédula" aria-label="Search" name="buscar" value="">
+        <select name="filtro" style="max-width: 130px;" class="form-select" aria-label="Default select example">
+            <option selected>Todos</option>
+            <option value="1">Por ingresar</option>
+            <option value="2">Ingresado</option>
+        </select>&nbsp;
+        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+<div class="container py-4" style="max-width: 800px;">
+    {% if messages %}
+        {% for m in messages %}
+            <div class="alert alert-info" role="alert">
+                  {{ m }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Medidor</th>
+                <th>Usuario</th>
+                <th>Cédula/RUC</th>
+                <th>Acción</th>
+                <!--<th>Correo</th>
+                <th>Detalle</th>
+                <th>Dirección</th>
+                <th>Celular</th>
+                <th>Deuda</th>-->
+            </tr>
+        </thead>
+        <tbody>
+        
+            {% for cliente in clientes %}
+            <tr>
+              <th scope="row">{{ cliente.medidor }}</th>
+                <td>{{ cliente.nombres }} {% if cliente.apellidos == None %} - {% else %} {{ cliente.apellidos }} {% endif %}</td>
+                <td>{{ cliente.cedula }}</td>
+                <!--<td>{{ cliente.email }}</td>
+                <td>{{ cliente.detalle }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.celular }}</td>
+                <td>{{ cliente.deuda }}</td>-->
+                <td>
+                    {% if cliente.ultima_cifra == fecha %}
+                        <a class="btn btn-sm btn-outline-warning " href="/ingresarcifra/{{cliente.id}}"><i class="fa-solid fa-eye"></i></a>
+                    {% else %}
+                        <a class="btn btn-sm btn-info " href="/ingresarcifra/{{cliente.id}}"><i class="fa-solid fa-plus"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %} 
+            </tbody>
+    </table> 
+    <a class="btn btn-outline-info" href="/cifras">Ver todos</a> &nbsp;&nbsp;        
+</div>
+{% endblock %} 

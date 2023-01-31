@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <title> Recibo de pago de Agua Milagro</title>
+    </head>
+    <body>
+        <p>&nbsp;</p>
+        <table style="width: 300px;" align="center">
+            <tbody>
+                <tr>
+                    <td style="width: 400px;">
+                        <h2 class="card-title text-center" style="text-align: center;">Recibo de Pago del Servicio de Agua Potable del GAD Parroquial de Milagro</h2>
+                        <p style="text-align: right;">&nbsp;emision:&nbsp; {{ tiempo }}</p>
+                        <p><strong>Mes de pago:&nbsp;</strong>{{ mes }} del {{ año }}<br /><strong>Usuario:&nbsp;</strong>{{ cliente.nombres }} {% if cliente.apellidos == None %} {% else %} {{ cliente.apellidos }} {% endif %} - {{ cliente.cedula }}<br /><strong>Medidor:&nbsp;</strong>{{ cliente.medidor }} - {{ cliente.direccion }}<br /><strong>Celular:&nbsp;</strong>{% if cliente.celular == None %} - {% else %} {{ cliente.celular }} {% endif %}&nbsp;&nbsp;<strong>email:&nbsp;</strong>{{ cliente.email }}<br /><strong>Cifra consumida:&nbsp;</strong>{{ cifraconsumida }} metros</p>
+                        <hr />
+                        <table style="width: 400px;">
+                        <tbody>
+                        <tr>
+                        <td style="width: 300px;"><strong>Descripcion&nbsp;</strong></td>
+                        <td style="text-align: right; width: 100px;"><strong>Valor</strong>&nbsp;</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <hr />
+                        <table>
+                        <tbody>
+                        <tr>
+                        <td style="width: 300px;">Cifra base: &nbsp;<strong>{{ valoresbase.base }}</strong></td>
+                        <td style="text-align: right; width: 100px;">{{ valoresbase.valor_cifra_base }}</td>
+                        </tr>
+                        <tr>
+                        <td style="width: 300px;">Metros adicionales consumidos: &nbsp;<strong>{{ metrosadicionales }}</strong>&nbsp;x {{ valoresbase.valor_adicional }} ctvs</td>
+                        <td style="text-align: right; width: 100px;">{{ adicional }}</td>
+                        </tr>
+                        <tr>
+                        <td style="width: 300px;"><strong>Total de {{ mes }}</strong></td>
+                        <td style="text-align: right; width: 100px;"><strong>{{ subtotal }}</strong></td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <hr />
+                        <table>
+                        <tbody>
+                        <tr>
+                        <td style="width: 300px;">Valores de pago pendientes: &nbsp;<strong>{{ fechamora }}</strong></td>
+                        <td style="text-align: right; width: 100px;">{{ pendiente }}</td>
+                        </tr>
+                        <tr>
+                        <td style="width: 300px;">Adicional por mora &nbsp;{{ valoresbase.porcentaje_mora }}%</td>
+                        <td style="text-align: right; width: 100px;">{{ mora }}</td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <hr />
+                        <table>
+                        <tbody>
+                        <tr>
+                        <td style="width: 300px;"><strong>Total cancelado&nbsp;</strong></td>
+                        <td style="text-align: right; width: 100px;"><strong>{{ total }}</strong></td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <hr />
+                        
+                        {% if mes_actual != mes %}
+                        <h6>* Aun no esta ingresada la actual cifra de {{ mes_actual }}</h6>
+                        {% endif %}
+                        <p style="text-align: center;">-- Salva la naturaleza! No imprimas este documento a menos que sea realmente necesario. --</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table> 
+    </body>
+</html>

@@ -1,0 +1,58 @@
+{% extends "home.html" %}
+
+{% block title %}Servic... Editar cliente{% endblock %}
+
+{% block content %}
+    <div class="container mb-1 " style="max-width: 450px;">
+        <h4 class="text-black-50 text-center py-3">¿Deséa editar el usuario?</h4>
+    </div>
+    <div class="container " style="max-width: 500px;">
+        {% if messages %}
+            {% for m in messages %}
+            <div class="alert alert-danger" role="alert">
+                <i class="fa-solid fa-triangle-exclamation"></i>  {{ m }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <form action="/actualizarcliente/{{cliente.id}}" method="POST">
+            {% csrf_token %}
+            <div class="mb-1">
+                <label for="">Nombres o razón social</label>
+                <input type="text" class="form-control" placeholder="Ej. 'Edhisson Alexis', 'Iglesia central'" maxlength="50" name="{{form.nombres.name}}" value="{{cliente.nombres}}" required>
+            </div>
+            <div class="mb-1">
+                <label for="">Apellidos (dejar en blanco si es razón social)</label>
+                <input type="text" class="form-control" placeholder="Ej. Sanmartin Freire" maxlength="30" name="{{form.apellidos.name}}" value="{{cliente.apellidos}}">
+            </div>
+            <!--<div class="mb-1">
+                <label for="">Detalle (para especificar otro medidor del mismo usuario)</label>
+                <input type="text" class="form-control" placeholder="Ej. casa 2" maxlength="30" name="{{form.detalle.name}}" value="{{cliente.detalle}}">
+            </div>-->
+            <div class="mb-1">
+                <label for="">Medidor</label>
+                <input type="text" class="form-control" placeholder="Ej. 0001178" maxlength="10" name="{{form.medidor.name}}" value="{{cliente.medidor}}" required>
+            </div>
+            <div class="mb-1">
+                <label for="">Cédula o RUC</label>
+                <input type="number" class="form-control" placeholder="Ej. 0705686230" onKeyPress="if(this.value.length==15) return false;" name="{{form.cedula.name}}" value="{{cliente.cedula}}" required>
+            </div>
+            <div class="mb-1">
+                <label for="">Email</label>
+                <input type="email" class="form-control" placeholder="Ej. edhisson97sanmartin@gmail.com" name="{{form.email.name}}" value="{{cliente.email}}" required>
+            </div>
+            <div class="mb-1">
+                <label for="">Número de celular</label>
+                <input type="number" class="form-control" placeholder="Ej. 0984556380" onKeyPress="if(this.value.length==10) return false;" name="{{form.celular.name}}" value="{{cliente.celular}}">
+            </div>
+            <div class="mb-1">
+                <label for="">Dirección</label>
+                <input type="text" class="form-control" placeholder="Ej. Juán María Freire" maxlength="50" name="{{form.direccion.name}}" value="{{cliente.direccion}}" required><p></p>
+            </div>
+            
+            <div class="mb-1" style ="text-align: center">
+                <a class="btn btn-outline-danger" href="/clientes">Cancelar</a>
+                <button type="submit" class="btn btn-outline-primary" >Guardar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %} 
