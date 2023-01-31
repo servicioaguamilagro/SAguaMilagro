@@ -15,16 +15,13 @@ import dj_database_url
 import locale
 
 #locale.setlocale(locale.LC_TIME, '')
-locale.setlocale(
-    category=locale.LC_ALL,
-    locale="Spanish"  # Note: do not use "de_DE" as it doesn't work
-)
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'es-es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
