@@ -14,7 +14,7 @@ from pathlib import Path
 import dj_database_url
 import locale
 
-locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
+locale.setlocale(locale.LC_ALL, 'es_ES.UTF-8')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
