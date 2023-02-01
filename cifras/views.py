@@ -95,11 +95,13 @@ def ingresar_cifra(request, id):
         cifra = request.POST.get("cifra")
         # obtener la ultima cifra
         longitud = len(tcifras)
-        if longitud == None:
+        if longitud != 0:
             utimacifra = tcifras[longitud-1]
             auxcifra = int(utimacifra.cifra)
         else:
             auxcifra = 0
+        print(auxcifra)
+        print(cifra)
         if auxcifra < int(cifra):
             #guardo valores
             c =Cifras()
@@ -149,13 +151,29 @@ def actualizar_cifra(request, id):
     ruta = ruta+str(cliente.id)
     print (ruta)
     if request.method == 'POST':
+        #para comprobar que no se ingresen cifras menores a la anterior
+        tcifras = Cifras.objects.filter(id_usuario = cliente).distinct()
+        longitud = len(tcifras)
+        if longitud != 0:
+            utimacifra = tcifras[longitud-1]
+            auxcifra = int(utimacifra.cifra)
+        else:
+            auxcifra = 0
         #obtengo cifra ingresada
         cifra = request.POST.get("cifra")
-        if cifra != "":
-            c.cifra = int(cifra)
-            if c.save() != True:
-                messages.success(request, "La cifra '"+cifra+"' del mes de "+_(c.mes)+" - "+c.anio+" del usuario "+cliente.nombres+ " a sido actualizada correctamente!")
+        if auxcifra < int(cifra):
+            
+            if cifra != "":
+                c.cifra = int(cifra)
+                if c.save() != True:
+                    messages.success(request, "La cifra '"+cifra+"' del mes de "+_(c.mes)+" - "+c.anio+" del usuario "+cliente.nombres+ " a sido actualizada correctamente!")
+            else:
+                messages.success(request, "A ocurrido un error! El campo esta vacio.")
         else:
-            messages.success(request, "A ocurrido un error! El campo esta vacio.")
+            messages.success(request, "La cifra actual debe ser mayor a la anterior ingresada, o a 0.")
+            r = '/editarcifra/'
+            r = r+str(c.id)
+            return redirect(r)
+    
     return redirect(ruta)
 

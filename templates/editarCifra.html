@@ -8,6 +8,13 @@
         <h4 class="text-black-50 text-center py-3">Editar cifra del medidor '{{ cliente.medidor }}' de {{ cliente.nombres }} del mes de <b> {% filter slugify %}{% trans cifra.mes %}{% endfilter %} del {{ cifra.anio }}</b></h4>
     </div>
     <div class="container " style="max-width: 500px;">
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-warning" role="alert">
+                    {{ m }}
+                </div>
+            {% endfor %}
+        {% endif %}
         <p> 
             <b>Medidor: </b>{{ cliente.medidor }} &nbsp;&nbsp;
             <b>Perteneciente a: </b>{{ cliente.nombres }} {% if cliente.apellidos == None %} {% else %} {{ cliente.apellidos }} {% endif %} / {{ cliente.cedula }}&nbsp;&nbsp;
