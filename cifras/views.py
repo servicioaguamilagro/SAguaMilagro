@@ -142,11 +142,12 @@ def actualizar_cifra(request, id):
     try:
         c = Cifras.objects.get(id=id)
     except Cifras.DoesNotExist:
-                raise Http404
+        raise Http404
     try:
         cliente = Cliente.objects.get(medidor=c.id_usuario)
     except Cliente.DoesNotExist:
-                raise Http404
+        raise Http404
+    
     ruta = '/ingresarcifra/'
     ruta = ruta+str(cliente.id)
     print (ruta)
