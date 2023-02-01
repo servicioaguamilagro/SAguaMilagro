@@ -66,7 +66,7 @@
                         <hr />
                         
                         {% if mes_actual != mes %}
-                        <h6>* Aun no esta ingresada la actual cifra de {{ mes_actual }}</h6>
+                        <h6>* Aun no esta ingresada la actual cifra de {% filter slugify %}{% trans mes_actual %}{% endfilter %}</h6>
                         {% endif %}
                         <p style="text-align: center;">-- Salva la naturaleza! No imprimas este documento a menos que sea realmente necesario. --</p>
                     </td>

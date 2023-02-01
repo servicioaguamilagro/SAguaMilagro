@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.db.models import Q
 from django.views.generic import View
+from django.utils.translation import gettext as _
 from clientes.models import Cliente
 from cifras.models import Cifras 
 from .models import Cobros
@@ -297,7 +298,7 @@ class GeneratePdf(View):
         cobro.fechacifra = cifra.mes+cifra.anio
         cobro.total = total
         if cobro.save() != True:
-            messages.success(request, "El pago de "+cifra.mes+" del "+cifra.anio+" a sido registrado correctamente! Se a enviado el recibo de pago al correo "+cliente.email+" y lo puede descargar en la nueva pestaña generada.")
+            messages.success(request, "El pago de "+_(cifra.mes)+" del "+cifra.anio+" a sido registrado correctamente! Se a enviado el recibo de pago al correo "+cliente.email+" y lo puede descargar en la nueva pestaña generada.")
         else:
             messages.success(request,"Ha ocurrido un error inesperado!")
         return HttpResponse(pdf,content_type='application/pdf')

@@ -14,14 +14,14 @@ from pathlib import Path
 import dj_database_url
 import locale
 
-locale.setlocale(locale.LC_ALL, '')
+#locale.setlocale(locale.LC_ALL, '')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'es-co'
 
-TIME_ZONE = 'America/Mexico_City'
+TIME_ZONE = 'America/Lima'
 
 USE_I18N = True
 

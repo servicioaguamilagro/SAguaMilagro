@@ -5,7 +5,7 @@
 {% block content %}
 {% load i18n %}
 <div class="container mb-1 " style="max-width: 800px;">
-    <h4 class="text-black-50 text-center py-3"> Cifras de <b>{% filter slugify %}{% trans f %}{% endfilter %}</b></h4>
+    <h4 class="text-black-50 text-center py-3"> Cifras de <b>{% filter slugify %}{% trans mes %}{% endfilter %}</b> del {{ año }}</h4>
 </div>
 <div class="container " style="max-width: 800px;">
     <form class="d-flex" method="GET">

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import Http404
 from django.contrib import messages
+from django.utils.translation import gettext as _
 from django.db.models import Q
 from clientes.models import Cliente
 from configuraciones.models import ValoresBase
@@ -21,7 +22,6 @@ def seleccion_clientes(request):
     año = date.strftime("%Y")
     mes = date.strftime("%B")
     fecha = mes+año
-    f = mes+ " del " +año
     try:
         if busqueda and (str(filtro)=='1' or str(filtro)=='2'):
             if str(filtro) == '2':
@@ -63,7 +63,7 @@ def seleccion_clientes(request):
                     messages.success(request, "Los usuarios con cifras sin ingresar son:")
     except Cliente.DoesNotExist:
                 raise Http404
-    return render(request, "cifras.html", {"clientes": reversed(clientes),"filtro":filtro,"fecha":fecha,"f":f})
+    return render(request, "cifras.html", {"clientes": reversed(clientes),"filtro":filtro,"fecha":fecha,"mes":mes, "año":año})
 
 def ingresar_cifra(request, id):
     try:
@@ -111,7 +111,7 @@ def ingresar_cifra(request, id):
             c.estado = 'n'
             if cifra != "":
                 if c.save() != True:
-                    messages.success(request, "La cifra '"+cifra+"' del mes de "+mes+" - "+año+" del usuario "+cliente.nombres+ " a sido agregada correctamente!")
+                    messages.success(request, "La cifra '"+cifra+"' del mes de "+_(mes)+" - "+año+" del usuario "+cliente.nombres+ " a sido agregada correctamente!")
                     #actualizo el campo del mes ingresado a la bd clientes
                     cliente.ultima_cifra = fecha_ucifra
                     cliente.deuda = 's'
@@ -154,7 +154,7 @@ def actualizar_cifra(request, id):
         if cifra != "":
             c.cifra = cifra
             if c.save() != True:
-                messages.success(request, "La cifra '"+cifra+"' del mes de "+c.mes+" - "+c.anio+" del usuario "+cliente.nombres+ " a sido actualizada correctamente!")
+                messages.success(request, "La cifra '"+cifra+"' del mes de "+_(c.mes)+" - "+c.anio+" del usuario "+cliente.nombres+ " a sido actualizada correctamente!")
         else:
             messages.success(request, "A ocurrido un error! El campo esta vacio.")
     return redirect(ruta)

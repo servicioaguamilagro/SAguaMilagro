@@ -48,7 +48,7 @@
                             </tbody>
                         </table>
                         {% if mes_actual != mes %} 
-                            <h6>* Aun no esta ingresada la actual cifra de {{ mes_actual }}</h6>
+                            <h6>* Aun no esta ingresada la actual cifra de {% filter slugify %}{% trans mes_actual %}{% endfilter %}</h6>
                         {% endif %}
                     </div>
             </div>
@@ -65,7 +65,7 @@
         {% endfor %}
     {% endif %}
     <div class="alert alert-primary" role="alert">
-      El usuario <b>{{ cliente.nombres }} {% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}</b> no tiene deudas pendientes! Su ultimo pago por el servicio corresponde a {{ ultimopago }}.
+      El usuario <b>{{ cliente.nombres }} {% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}</b> no tiene deudas pendientes! Su ultimo pago por el servicio corresponde a {% filter slugify %}{% trans ultimopago %}{% endfilter %}.
     </div>
         <table class="table table-responsive table-striped">
           <thead>
