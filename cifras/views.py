@@ -63,7 +63,7 @@ def seleccion_clientes(request):
                     messages.success(request, "Los usuarios con cifras sin ingresar son:")
     except Cliente.DoesNotExist:
                 raise Http404
-    return render(request, "cifras.html", {"clientes": reversed(clientes),"filtro":filtro,"fecha":fecha,"mes":mes, "año":año})
+    return render(request, "cifras.html", {"clientes": clientes,"filtro":filtro,"fecha":fecha,"mes":mes, "año":año})
 
 def ingresar_cifra(request, id):
     try:

@@ -50,7 +50,7 @@ def listar_clientes(request):
             ).distinct()
         except Cliente.DoesNotExist:
             raise Http404
-    return render(request, "clientes.html", {"clientes": reversed(clientes)})
+    return render(request, "clientes.html", {"clientes": clientes})
 
 def editar_cliente(request, id):
     try:

@@ -39,7 +39,7 @@
         <tbody>
             {% for cliente in clientes %}
             <tr>
-              <th scope="row">{{ cliente.nombres }} {% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}</th>
+              <th scope="row">{% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}{{ cliente.nombres }} </th>
                 <td>{{ cliente.medidor }}</td>
                 <td>{{ cliente.cedula }}</td>
                 <!--<td>{{ cliente.email }}</td>
