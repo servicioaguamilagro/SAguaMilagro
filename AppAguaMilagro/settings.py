@@ -19,7 +19,7 @@ locale.setlocale(locale.LC_ALL, '')
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Lima'
 

@@ -8,6 +8,7 @@ from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.core.mail import send_mail
 from email.message import EmailMessage
+from django.utils.translation import gettext as _
 from django.db.models import Q
 from clientes.models import Cliente
 from cobros.models import Cobros
@@ -77,9 +78,14 @@ def home(request,):
         raise Http404
     if cobros:
         for cob in cobros:
-            cobros_totales = cobros_totales+cob.total
+            cobros_totales = cob.total + cobros_totales
+            print(cob.fechacifra)
+            print(mes+año)
             if cob.fechacifra == mes+año:
                 cobros_actuales= cobros_actuales+cob.total
+    print(cobros_actuales)
+    print(cobros_totales)
+    
     #para inicio de sesion
     if request.method == 'GET':#cuando ya esta autenticaado
         if valores:
