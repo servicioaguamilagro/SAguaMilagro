@@ -152,7 +152,7 @@ def actualizar_cifra(request, id):
         #obtengo cifra ingresada
         cifra = request.POST.get("cifra")
         if cifra != "":
-            c.cifra = cifra
+            c.cifra = int(cifra)
             if c.save() != True:
                 messages.success(request, "La cifra '"+cifra+"' del mes de "+_(c.mes)+" - "+c.anio+" del usuario "+cliente.nombres+ " a sido actualizada correctamente!")
         else:
