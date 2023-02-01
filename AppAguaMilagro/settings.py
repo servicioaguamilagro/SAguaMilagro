@@ -19,9 +19,9 @@ locale.setlocale(locale.LC_ALL, '')
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-ar'
+LANGUAGE_CODE = 'es-co'
 
-TIME_ZONE = 'America/Argentina/Buenos_Aires'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
