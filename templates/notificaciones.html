@@ -3,6 +3,7 @@
 {% block title %}Servic... Notificaciones{% endblock %}
 
 {% block content %}
+{% load i18n %}
     <div class="container mb-1 " style="max-width: 800px;">
         <h4 class="text-black-50 text-center py-3"><i class="fa-solid fa-envelope"></i> Envío de alertas a usuarios con deudas pendientes </h4>
     </div>
@@ -48,7 +49,7 @@
                     <td>
                         {% for c in cifras %}
                             {% if cliente == c.id_usuario %}
-                                {{ c.mes }} / {{ c.anio }}<br>
+                                {% filter slugify %}{% trans c.mes %}{% endfilter %} / {{ c.anio }}<br>
                             {% endif %}
                         {% endfor %}
                     </td>

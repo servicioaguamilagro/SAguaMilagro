@@ -3,6 +3,7 @@
 {% block title %}Servic... Nueva cifra{% endblock %}
 
 {% block content %}
+{% load i18n %}
 <div class="container mb-1 " style="max-width: 800px;">
     <h4 class="text-black-50 text-center py-3">Cifras del medidor '{{ cliente.medidor }}' de {{ cliente.nombres }}</h4>
 </div>
@@ -15,11 +16,11 @@
 <div class="container " style="max-width: 500px;">
     {% if mes == umes %}
         <div class="alert alert-success" role="alert">
-            <h6><i class="fa-solid fa-check"></i> La cifra del mes de <b>{{ mes }} del {{ año }}</b> ya a sido registrada.</h6>
+            <h6><i class="fa-solid fa-check"></i> La cifra del mes de <b>{% filter slugify %}{% trans mes %}{% endfilter %} del {{ año }}</b> ya a sido registrada.</h6>
         </div>    
     {% else %}
         <div class="alert alert-primary" role="alert">
-            <h6>Agregar cifra actual del medidor, correspondiente al mes de <b>{{ mes }} del {{ año }}</b></h6>
+            <h6>Agregar cifra actual del medidor, correspondiente al mes de <b>{% filter slugify %}{% trans mes %}{% endfilter %} del {{ año }}</b></h6>
             <form class="d-flex" method="POST">
                 {% csrf_token %}
                 <input class="form-control me-2" type="number" placeholder="Cifra actual del medidor" aria-label="Search" name="cifra" value="" required>
@@ -55,7 +56,7 @@
         <tbody>
             {% for tcifras in tcifras %}
             <tr>
-              <th scope="row">{{ tcifras.mes }}</th>
+              <th scope="row">{% filter slugify %}{% trans tcifras.mes %}{% endfilter %}</th>
                 <td>{{ tcifras.anio }}</td>
                 <td>{{ tcifras.cifra }}</td>
                 <td>{% if tcifras.estado == 'n' %} Pendiente {% else %} Pagado {% endif %}</td>

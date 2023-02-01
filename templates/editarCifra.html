@@ -3,8 +3,9 @@
 {% block title %}Servic... Editar cifra{% endblock %}
 
 {% block content %}
+{% load i18n %}
     <div class="container mb-1 " style="max-width: 600px;">
-        <h4 class="text-black-50 text-center py-3">Editar cifra del medidor '{{ cliente.medidor }}' de {{ cliente.nombres }} del mes de <b>{{ cifra.mes }} del {{ cifra.anio }}</b></h4>
+        <h4 class="text-black-50 text-center py-3">Editar cifra del medidor '{{ cliente.medidor }}' de {{ cliente.nombres }} del mes de <b> {% filter slugify %}{% trans cifra.mes %}{% endfilter %} del {{ cifra.anio }}</b></h4>
     </div>
     <div class="container " style="max-width: 500px;">
         <p> 
@@ -15,7 +16,7 @@
     </div>
     <div class="container " style="max-width: 500px;">
         <div class="alert alert-primary" role="alert">
-            <h6>Actualizar el valor de la cifra '<b>{{ cifra.cifra }}</b>' del mes de <b>{{ cifra.mes }} del {{ cifra.anio }}</b>:</h6>
+            <h6>Actualizar el valor de la cifra '<b>{{ cifra.cifra }}</b>' del mes de <b>{% filter slugify %}{% trans cifra.mes %}{% endfilter %} del {{ cifra.anio }}</b>:</h6>
             <form action="/actualizarcifra/{{cifra.id}}" class="d-flex" method="POST">
                 {% csrf_token %}
                 <input class="form-control me-2" type="number" placeholder="Cifra actual del medidor" aria-label="Search" name="cifra" value="{{ cifra.cifra }}" required>

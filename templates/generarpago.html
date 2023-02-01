@@ -3,6 +3,7 @@
 {% block title %}Servic... Valores de pago{% endblock %}
 
 {% block content %}
+{% load i18n %}
     <div class="container mb-1 " style="max-width: 800px;">
         <h4 class="text-black-50 text-center py-3">Valores a pagar del medidor {{ cliente.medidor }} <p>de <b>{{ cliente.nombres }} {% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}</b></p></h4>
     </div>
@@ -11,7 +12,7 @@
         <div class="card" style="max-width: 500px;">
             <div class="card-body">
                 <h5 class="card-title text-center">Recibo de Pago del Servicio de Agua Potable del GAD Parroquial de Milagro </h5>
-                <p class="card-text"><b>Mes de pago: </b>{{ mes }} del {{ año }}<br>
+                <p class="card-text"><b>Mes de pago: </b>{% filter slugify %}{% trans mes %}{% endfilter %} del {{ año }}<br>
                                     <b>Usuario: </b>{{ cliente.nombres }} {% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %} - {{ cliente.cedula }}<br>
                                     <b>Medidor: </b>{{ cliente.medidor }} - {{ cliente.direccion }}<br>
                                     <b>Celular: </b>{% if cliente.celular == None %} - {% else %} {{ cliente.celular }} {% endif %}&nbsp; <b>email: </b>{{ cliente.email }}</b><br>
@@ -29,11 +30,11 @@
                                     <td>{{ adicional }}</td>
                                   </tr>
                                   <tr>
-                                    <th>Total de {{ mes }}</th>
+                                    <th>Total de {% filter slugify %}{% trans mes %}{% endfilter %}</th>
                                     <th>{{ subtotal }}</th>
                                   </tr>
                                   <tr>
-                                    <td>Valores de pago pendientes: &nbsp;<b>{{ fechamora }}</b></td>
+                                    <td>Valores de pago pendientes: &nbsp;<b>{% filter slugify %}{% trans fechamora %}{% endfilter %}</b></td>
                                     <td>{{ pendiente }}</td>
                                   </tr>
                                   <tr>
