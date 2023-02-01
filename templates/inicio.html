@@ -3,6 +3,8 @@
 {% block title %}Servicio de agua Milagro{% endblock %}
 
 {% block content %}
+{% load i18n %}
+{% filter slugify %}{% trans mes %}{% endfilter %}
     <div class="container mb-5 " style="max-width: 450px;">
         <h1 class="text-black-50 text-center py-1"><br>Bienvenid@ {{ user }}!</h1>
     </div>
@@ -71,7 +73,7 @@
                         <div class="card border-success mb-3 text-center" style="max-width: 18rem;">
                             <div class="card-body text-success">
                                 <h3>$ {{ cobros_totales }}</h3>
-                                <span>{{ mes }}</span>
+                                <span>{% filter slugify %}{% trans mes %}{% endfilter %}</span>
                             </div>
                         </div>
                     </div>
