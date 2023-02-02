@@ -34,7 +34,7 @@
                                     <th>{{ subtotal }}</th>
                                   </tr>
                                   <tr>
-                                    <td>Valores de pago pendientes: &nbsp;<b>{% filter slugify %}{% trans fechamora %}{% endfilter %}</b></td>
+                                    <td>Valores de pago pendientes: &nbsp;<b>{% for fechamora in fechamora %}{% filter slugify %}{% trans fechamora %}{% endfilter %} {% endfor %}</b></td>
                                     <td>{{ pendiente }}</td>
                                   </tr>
                                   <tr>

@@ -95,7 +95,7 @@ def calcular_cobro(request, id):
     total =0
     mora = 0
     pendiente = 0
-    fechamora = " "
+    fechamora =[]
     auxmora = 0
     estado = 's'
     ultimopago =''
@@ -138,15 +138,18 @@ def calcular_cobro(request, id):
                 
             
             subtotal = valor + adicional
+            subtotal = round(subtotal,2)
 
             if fecha != cifra.mes+cifra.anio:#compruebo si hay deudas por mora
                 mora = valoresbase.porcentaje_mora*subtotal/100
                 pendiente = pendiente + subtotal# solo para imprimir en factuta
                 subtotal = subtotal + mora#sumo el valor adicional por pasarce al otro mes
-                fechamora = fechamora +cifra.mes+" "
+                fechamora.append(cifra.mes)
                 auxmora = auxmora+mora    
             
-            total = total + subtotal 
+            total = total + subtotal
+            total = round(total,2) 
+            
             print("Adicional por metros pasados: ")
             print(adicional)
             print("Subtotal: ")
@@ -208,7 +211,7 @@ class GeneratePdf(View):
         total =0
         mora = 0
         pendiente = 0
-        fechamora = " "
+        fechamora = []
         auxmora = 0
         for cifra in cifras:#recorre cifra por cifra del usuario
             if cifra.estado == 's':#comprueba si la cifra a sido pagada  
@@ -231,15 +234,17 @@ class GeneratePdf(View):
                     
                 
                 subtotal = valor + adicional
+                subtotal=round(subtotal,2)
 
                 if fecha != cifra.mes+cifra.anio:#compruebo si hay deudas por mora
                     mora = valoresbase.porcentaje_mora*subtotal/100
                     pendiente = pendiente + subtotal# solo para imprimir en factuta
                     subtotal = subtotal + mora#sumo el valor adicional por pasarce al otro mes
-                    fechamora = fechamora +cifra.mes+" "
+                    fechamora.append(cifra.mes) 
                     auxmora = auxmora+mora    
                 
-                total = total + subtotal 
+                total = total + subtotal
+                total=round(total,2) 
                 print("Adicional por metros pasados: ")
                 print(adicional)
                 print("Subtotal: ")

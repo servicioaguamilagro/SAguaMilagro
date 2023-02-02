@@ -45,7 +45,7 @@
                         <table>
                         <tbody>
                         <tr>
-                        <td style="width: 300px;">Valores de pago pendientes: &nbsp;<strong>{% filter slugify %}{% trans fechamora %}{% endfilter %}</strong></td>
+                        <td style="width: 300px;">Valores de pago pendientes: &nbsp;<strong>{% for fechamora in fechamora %}{% filter slugify %}{% trans fechamora %}{% endfilter %}{% endfor %}</strong></td>
                         <td style="text-align: right; width: 100px;">{{ pendiente }}</td>
                         </tr>
                         <tr>
