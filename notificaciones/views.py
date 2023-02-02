@@ -99,7 +99,7 @@ def notificar_usuario(request, id):
     else:
         apellido = str(cliente.apellidos)
     subject = "Pago pendiente por el servicio de Agua Potable - GAD Parroquial de Milagro"
-    message = "Estimado usuario "+cliente.nombres+" "+ apellido +" - medidor: "+str(cliente.medidor)+", acercarse a cancelar los valores pendientes de"+_(mesesdeuda)+" por el servicio de Agua Potable. Los valores pendientes repercuten en suspención del servicio."
+    message = "Estimado usuario "+cliente.nombres+" "+ apellido +" - medidor: "+str(cliente.medidor)+", acercarse a cancelar los valores pendientes de"+mesesdeuda+" por el servicio de Agua Potable. Los valores pendientes repercuten en suspención del servicio."
     from_email=settings.EMAIL_HOST_USER
     recipient_list=[cliente.email]
     send_mail(subject, message, from_email, recipient_list)
@@ -140,7 +140,7 @@ def notificar_todos(request,):
                 apellido = str(cliente.apellidos)
             #correo
             subject = "Pago pendiente por el servicio de Agua Potable - GAD Parroquial de Milagro"
-            message = "Estimado usuario "+cliente.nombres+" "+ apellido +" - medidor: "+str(cliente.medidor)+", acercarse a cancelar los valores pendientes de"+_(mesesdeuda)+" por el servicio de Agua Potable. Las deudas pendientes repercuten en suspención del servicio."
+            message = "Estimado usuario "+cliente.nombres+" "+ apellido +" - medidor: "+str(cliente.medidor)+", acercarse a cancelar los valores pendientes de"+mesesdeuda+" por el servicio de Agua Potable. Las deudas pendientes repercuten en suspención del servicio."
             from_email=settings.EMAIL_HOST_USER
             recipient_list=[cliente.email]
             send_mail(subject, message, from_email, recipient_list)
