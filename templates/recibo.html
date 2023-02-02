@@ -13,7 +13,7 @@
                 <tr>
                     <td style="width: 400px;">
                         <h2 class="card-title text-center" style="text-align: center;">Recibo de Pago del Servicio de Agua Potable del GAD Parroquial de Milagro</h2>
-                        <p style="text-align: right;">&nbsp;emision:&nbsp; {% filter slugify %}{% trans tiempo %}{% endfilter %}</p>
+                        <p style="text-align: right;">&nbsp;emision:&nbsp; {{ tiempo }}</p>
                         <p><strong>Mes de pago:&nbsp;</strong>{% filter slugify %}{% trans mes %}{% endfilter %} del {{ año }}<br /><strong>Usuario:&nbsp;</strong>{{ cliente.nombres }} {% if cliente.apellidos == None %} {% else %} {{ cliente.apellidos }} {% endif %} - {{ cliente.cedula }}<br /><strong>Medidor:&nbsp;</strong>{{ cliente.medidor }} - {{ cliente.direccion }}<br /><strong>Celular:&nbsp;</strong>{% if cliente.celular == None %} - {% else %} {{ cliente.celular }} {% endif %}&nbsp;&nbsp;<strong>email:&nbsp;</strong>{{ cliente.email }}<br /><strong>Cifra consumida:&nbsp;</strong>{{ cifraconsumida }} metros</p>
                         <hr />
                         <table style="width: 400px;">
