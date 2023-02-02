@@ -95,7 +95,7 @@ def calcular_cobro(request, id):
     total =0
     mora = 0
     pendiente = 0
-    fechamora = ""
+    fechamora = " "
     auxmora = 0
     estado = 's'
     ultimopago =''
@@ -105,7 +105,13 @@ def calcular_cobro(request, id):
             auxcifra =cifra.cifra#almacena la ultima cifra pagada
             ultimopago = cifra.mes
         else:
+            
             cifr = cifra.cifra-auxcifra#calcula la cifra para realizar mas calculos
+            print(auxcifra)
+            print(cifra.cifra)
+            print("???????????????????????")
+            print(cifr)
+            print("????????????????????????????")
             try:
                 valoresbase = ValoresBase.objects.get(id=cifra.id_valores)
             except ValoresBase.DoesNotExist:
@@ -123,11 +129,13 @@ def calcular_cobro(request, id):
             if cifr > valoresbase.base:#para calcular el adicional si se psa de la base
                 metrosadicionales = (cifr-valoresbase.base)#solo para mostrar en factura
                 adicional = (cifr-valoresbase.base)*valoresbase.valor_adicional
-                auxcifra =cifr#actualizo cifra base
+                auxcifra =cifra.cifra#actualizo cifra base
+                
             else:
                 adicional = 0
                 subtotal = valor + adicional
-                auxcifra =cifr#actualizo cifra base
+                auxcifra =cifra.cifra#actualizo cifra base
+                
             
             subtotal = valor + adicional
 
@@ -200,7 +208,7 @@ class GeneratePdf(View):
         total =0
         mora = 0
         pendiente = 0
-        fechamora = ""
+        fechamora = " "
         auxmora = 0
         for cifra in cifras:#recorre cifra por cifra del usuario
             if cifra.estado == 's':#comprueba si la cifra a sido pagada  
@@ -215,11 +223,12 @@ class GeneratePdf(View):
                 if cifr > valoresbase.base:#para calcular el adicional si se psa de la base
                     metrosadicionales = (cifr-valoresbase.base)#solo para mostrar en factura
                     adicional = (cifr-valoresbase.base)*valoresbase.valor_adicional
-                    auxcifra =cifr#actualizo cifra base
+                    auxcifra =cifra.cifra#actualizo cifra base
                 else:
                     adicional = 0
                     subtotal = valor + adicional
-                    auxcifra =cifr#actualizo cifra base
+                    auxcifra =cifra.cifra#actualizo cifra base
+                    
                 
                 subtotal = valor + adicional
 
