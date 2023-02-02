@@ -136,7 +136,7 @@ def ingresar_cifra(request, id):
 def editar_cifras(request, id):
     cifra = Cifras.objects.get(id=id)
     cliente = Cliente.objects.get(medidor=cifra.id_usuario)
-    return render(request, "editarcifra.html", {"cliente": cliente,"cifra":cifra})
+    return render(request, "editarCifra.html", {"cliente": cliente,"cifra":cifra})
 
 def actualizar_cifra(request, id):
     try:
