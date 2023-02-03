@@ -21,6 +21,7 @@ from cifras.views import seleccion_clientes,ingresar_cifra, editar_cifras, actua
 from cobros.views import mostrar_clientes, calcular_cobro, GeneratePdf
 from notificaciones.views import notificaciones, notificar_usuario, notificar_todos
 from configuraciones.views import configuraciones, nuevo_administrador, nuevos_valores, actualizar_usuario,eliminar_usuario
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -56,4 +57,9 @@ urlpatterns = [
     path('actualizarusuario/<int:id>',actualizar_usuario),
     path('eliminarusuario/',eliminar_usuario),
     path('superuser/',superUser),
+    #reseteo contraseñas
+    path('reset_password/',auth_views.PasswordResetView.as_view(template_name="contraseñaResetear.html"), name='password_reset'),
+    path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(template_name="contraseñaEnvio.html"), name='password_reset_done'),
+    path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name="contraseñaNueva.html"),name='password_reset_confirm'),
+    path('reset_password_complete',auth_views.PasswordResetCompleteView.as_view(template_name="contraseñaCompletado.html"),name='password_reset_complete'),
 ]

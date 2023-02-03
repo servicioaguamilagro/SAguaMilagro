@@ -1,0 +1,39 @@
+{% extends "base2.html" %}
+
+{% block title %}Servic... Restablecer contraseña{% endblock %}
+
+{% block content %}
+<div class="col-md-5">
+    <div class="row  justify-content-center align-items-center py-5">
+        <div class="col-auto bg-light p-5">
+            <h4 class ="text-secondary text-center py-2" > Escriba la nueva contraseña </h4>
+            <span>Por favor, introduzca su contraseña nueva dos veces para verificar que la ha escrito correctamente.</span><br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <!--<div class="form-floating mb-4">
+                    <input type="email" class="form-control" id="floatingInputValue" name="correo" placeholder="name@example.com" required>
+                    <label for="floatingInputValue">Correo electrónico</label>
+                </div>-->
+                <!--{{form.as_p}}-->
+                <br><div class="form-floating ">
+                    <input type="password" class="form-control" id="floatingInputValue" name="{{form.new_password1.name}}" placeholder="name@example.com" required>
+                    <label for="floatingInputValue">Contraseña</label>
+                </div>
+                <br><div class="form-floating ">
+                    <input type="password" class="form-control" id="floatingInputValue" name="{{form.new_password2.name}}" placeholder="name@example.com" required>
+                    <label for="floatingInputValue">Confirmar contraseña</label>
+                </div><br>
+                <br><div class="form-floating ">
+                    La contraseña debe tener al menos 8 caracteres.
+                    Si la página no cambia, la contraseña aun no se a guardado, siga intentándolo hasta continuar.
+                </div><br>
+                <div class="" style ="text-align: center">
+                    <a class="btn btn-outline-danger" href="/">Cancelar</a>&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-outline-primary" >Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 

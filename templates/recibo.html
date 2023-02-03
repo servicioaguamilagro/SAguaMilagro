@@ -36,7 +36,7 @@
                         <td style="text-align: right; width: 100px;">{{ adicional }}</td>
                         </tr>
                         <tr>
-                        <td style="width: 300px;"><strong>Total de {% filter slugify %}{% trans mes %}{% endfilter %}</strong></td>
+                        <td style="width: 300px;"><strong>Total de {% filter slugify %}{% trans mes %} {% endfilter %}</strong></td>
                         <td style="text-align: right; width: 100px;"><strong>{{ subtotal }}</strong></td>
                         </tr>
                         </tbody>
@@ -45,7 +45,7 @@
                         <table>
                         <tbody>
                         <tr>
-                        <td style="width: 300px;">Valores de pago pendientes: &nbsp;<strong>{% for fechamora in fechamora %}{% filter slugify %}{% trans fechamora %}{% endfilter %}{% endfor %}</strong></td>
+                        <td style="width: 300px;">Valores de pago pendientes: &nbsp;<strong>{% for fechamora in fechamora %}{% filter slugify %} {% trans fechamora %}  {% endfilter %}{% endfor %}</strong></td>
                         <td style="text-align: right; width: 100px;">{{ pendiente }}</td>
                         </tr>
                         <tr>

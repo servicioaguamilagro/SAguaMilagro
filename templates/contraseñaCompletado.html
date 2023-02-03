@@ -1,0 +1,26 @@
+{% extends "base2.html" %}
+
+{% block title %}Servic... Restablecer contraseña{% endblock %}
+
+{% block content %}
+<div class="col-md-5">
+    <div class="row  justify-content-center align-items-center py-5">
+        <div class="col-auto bg-light p-5">
+            <h4 class ="text-secondary text-center py-2" > Restablecimiento completado </h4>
+            <span>La contraseña se ha restablecido correctamente! Por favor inicie sesión.</span><br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <!--<div class="form-floating mb-4">
+                    <input type="email" class="form-control" id="floatingInputValue" name="correo" placeholder="name@example.com" required>
+                    <label for="floatingInputValue">Correo electrónico</label>
+                </div>-->
+                {{form.as_p}}
+                <div class="" style ="text-align: center">
+                    <a class="btn btn-outline-info" href="/">Iniciar Sesión</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 

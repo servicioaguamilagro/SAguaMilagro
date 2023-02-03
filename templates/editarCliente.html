@@ -22,7 +22,7 @@
             </div>
             <div class="mb-1">
                 <label for="">Apellidos (dejar en blanco si es razón social)</label>
-                <input type="text" class="form-control" placeholder="Ej. Sanmartin Freire" maxlength="30" name="{{form.apellidos.name}}" value="{{cliente.apellidos}}">
+                <input type="text" class="form-control" placeholder="Ej. Sanmartin Freire" maxlength="30" name="{{form.apellidos.name}}" value="{% if cliente.apellidos == None %}{% else %}{{ cliente.apellidos }}{% endif %}">
             </div>
             <!--<div class="mb-1">
                 <label for="">Detalle (para especificar otro medidor del mismo usuario)</label>
