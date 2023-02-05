@@ -104,8 +104,6 @@ WSGI_APPLICATION = 'AppAguaMilagro.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
     'default': dj_database_url.config(
         default='sqlite:///db.sqlite3',

@@ -15,7 +15,7 @@ class CifrasTestCase(TestCase):
            celular='0986532569'
        )
 
-    def test_setUp_creationvalores(self):
+    def test_setUp_ingresarcifras(self):
         cliente = Cliente.objects.get(id=1)
         self.cifras = Cifras.objects.create(
            id_usuario=cliente,

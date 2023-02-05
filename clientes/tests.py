@@ -27,7 +27,7 @@ class ClienteTestCase(TestCase):
     def test_setUp_delete(self):
         cliente = Cliente.objects.get(id=1)
         cliente.delete()
-        self.assertIsNot(cliente.nombres, 'Alexis')
+        self.assertIsNot(cliente.apellidos,'Sanmartin')
         
    
 
