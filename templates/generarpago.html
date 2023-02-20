@@ -106,7 +106,7 @@
         {% endif %}
 
         {% if total != None %}
-            <a class="btn btn-success" href="javascript:void(0);" onclick="window.open('/generarpdf/{{cliente.id}}');recargar();">Generar pago</a>
+            <a title="Generar pago del servicio" class="btn btn-success" href="javascript:void(0);" onclick="window.open('/generarpdf/{{cliente.id}}');recargar();">Generar pago</a>
             <script language="JavaScript">
               function recargar() {
                 setTimeout("location.href='/calcularcobro/{{cliente.id}}'", 4000);

@@ -276,7 +276,6 @@ class GeneratePdf(View):
             raise Http404
         template_name="recibo.html"
         pdf = render_to_pdf(template_name,context)
-        
         #enviar correo electronico
         template2 = get_template('recibo.html')
         content = template2.render(context)
@@ -287,11 +286,9 @@ class GeneratePdf(View):
         to=[
             cliente.email
         ],
-        cc=[]
-        )
+        cc=[])
         mail.attach_alternative(content,'text/html')
         mail.send(fail_silently=False)
-
         #actualizar BD
         for cifra in cifras:#recorre cifra por cifra del usuario
             if cifra.estado == 'n':#comprueba si la cifra no a sido pagada  

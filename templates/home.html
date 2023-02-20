@@ -18,7 +18,7 @@
         {% if user.is_authenticated %}
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark " >
                 <div class="container-fluid">
-                        <a class="navbar-brand" href="/">
+                        <a title="Página principal" class="navbar-brand" href="/">
                             <i class="fa-sharp fa-solid fa-droplet"></i> Servicio de Agua</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -26,16 +26,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-item nav-link active" href="/cobros"><i class="fa-solid fa-cash-register"></i> Cobros</a>
+                                <a title="Realizar cobros del servicio" class="nav-item nav-link active" href="/cobros"><i class="fa-solid fa-cash-register"></i> Cobros</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-item nav-link active" href="/cifras"><i class="fa-solid fa-gauge"></i> Cifras</a>
+                                <a title="Ingresar cifras de consumo" class="nav-item nav-link active" href="/cifras"><i class="fa-solid fa-gauge"></i> Cifras</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-item nav-link active" href="/clientes"><i class="fa-solid fa-user"></i> Clientes</a>
+                                <a title="Clientes del servicio" class="nav-item nav-link active" href="/clientes"><i class="fa-solid fa-users"></i> Clientes</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-item nav-link active" href="/notificaciones"><i class="fa-solid fa-envelope"></i> Notificar deudas</a>
+                                <a title="Notificar deudas de usuarios" class="nav-item nav-link active" href="/notificaciones"><i class="fa-solid fa-envelope"></i> Notificar deudas</a>
                             </li>
                             <!--<li class="nav-item">
                                 <a class="nav-item nav-link active" href="/configuraciones"><i class="fa-solid fa-gear"></i> Configuraciones</a>
@@ -45,7 +45,7 @@
                         <ul class="navbar-nav ms-auto   mb-2 mb-lg-0">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ user }} 
+                                    <i class="fa-solid fa-user"></i> &nbsp;{{ user }} 
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li><a class="dropdown-item" href="/configuraciones"></i> Configuraciones</a>
@@ -72,7 +72,7 @@
                          <div class="text-center d-none d-lg-block">
                             {% load static %}
                             <img class="img-fluid" style="max-width: 65%; height: auto" src="{% static 'img/gota.png' %}" alt="My image">
-                            <h6 class ="text-secondary">Sistema solo para administradores, inicie sesión para utilizar los servicios que ofrece la aplicacion.</h6>
+                            <h6 class ="text-secondary">Sistema solo para administradores, inicie sesión para utilizar los servicios que ofrece la aplicación.</h6>
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -105,7 +105,7 @@
                                         <button type="submit" class="btn btn-outline-primary" >Ingresar</button>
                                     </div>
                                     <div class="my-3">
-                                        <span>Necesitas ayuda? <a href="/infocorreo" class="link-secondary" style="margin-left"> Mas información.</a></span>
+                                        <span>Necesitas ayuda? <a href="/infocorreo" class="link-secondary" style="margin-left"> Más información.</a></span>
                                     </div>
                                 </form>
                             </div>
@@ -114,11 +114,11 @@
                 </div>
             </div>
         {% endif %}
-        <p class="text-center">© GAD Milagro</p>
+        <p class="text-center">© GAD Milagro 2023 {% if user.is_authenticated %}- <span><a href="https://drive.google.com/file/d/16-8JYegC2xnaQnbSgStOgYeFJUycr0b_/view?usp=share_link" class="enlace-sin-subrayado" style="margin-left" target="_blank"> Ayuda</a></span>{% endif %}</p> 
         <style type="text/css">
             .nav-item:hover {
                 color: #e79eff;
-                background-color: #2471A3 ;
+                background-color: #474747  ;
                }
             .enlace-sin-subrayado {
                 text-decoration: none;
