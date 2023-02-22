@@ -12,6 +12,7 @@ from django.utils.translation import gettext as _
 from django.db.models import Q
 from clientes.models import Cliente
 from cobros.models import Cobros
+from cifras.models import Cifras
 from configuraciones.models import ValoresBase
 import datetime
 
@@ -143,3 +144,76 @@ def info_correo(request,):
     if usuarios:
         return render(request, "infocorreo.html", {"usuarios":usuarios})
     return render(request, "infocorreo.html", {})
+
+def calcular_valores(request):
+    medidor = request.POST.get("buscar")
+    mensaje =""
+    try:
+        clientes = Cliente.objects.filter(
+            Q(medidor = medidor)
+        ).distinct()
+    except Cliente.DoesNotExist:
+        raise Http404
+    if clientes:
+        for cliente in clientes:
+            try:
+                cifras = Cifras.objects.filter(id_usuario = cliente).distinct()
+            except Cifras.DoesNotExist:
+                raise Http404
+            auxcifra =0
+            #para obtener el año y mes
+            date = datetime.date.today()
+            año = date.strftime("%Y")
+            mes = date.strftime("%B")
+            fecha = mes+año
+            total =0
+            mora = 0
+            pendiente = 0
+            fechamora =[]
+            auxmora = 0
+            estado = 's'
+            ultimopago =''
+            for cifra in cifras:#recorre cifra por cifra del usuario
+                estado =cifra.estado#para saber el ultimo estado de la cifra
+                if cifra.estado == 's':#comprueba si la cifra a sido pagada  
+                    auxcifra =cifra.cifra#almacena la ultima cifra pagada
+                    ultimopago = cifra.mes
+                else:
+                    
+                    cifr = cifra.cifra-auxcifra#calcula la cifra para realizar mas calculos
+                    try:
+                        valoresbase = ValoresBase.objects.get(id=cifra.id_valores)
+                    except ValoresBase.DoesNotExist:
+                        raise Http404
+                    valor = valoresbase.valor_cifra_base
+                    subtotal = 0.0
+                    
+                    if cifr > valoresbase.base:#para calcular el adicional si se psa de la base
+                        adicional = (cifr-valoresbase.base)*valoresbase.valor_adicional
+                        auxcifra =cifra.cifra#actualizo cifra base
+                        
+                    else:
+                        adicional = 0
+                        subtotal = valor + adicional
+                        auxcifra =cifra.cifra#actualizo cifra base
+                        
+                    
+                    subtotal = valor + adicional
+                    subtotal = round(subtotal,2)
+
+                    if fecha != cifra.mes+cifra.anio:#compruebo si hay deudas por mora
+                        mora = valoresbase.porcentaje_mora*subtotal/100
+                        pendiente = pendiente + subtotal# solo para imprimir en factuta
+                        subtotal = subtotal + mora#sumo el valor adicional por pasarce al otro mes
+                        fechamora.append(cifra.mes)
+                        auxmora = auxmora+mora    
+                    
+                    total = total + subtotal
+                    total = round(total,2)
+        if cliente.apellidos == None:
+            apellido = ""
+        mensaje ="El medidor "+str(cliente.medidor)+" tiene una deuda de $"+str(total)+", correspondiente a "+cliente.nombres+" "+apellido+"." 
+        return render(request, "buscarDeuda.html",{"mensaje":mensaje})
+    else:
+        mensaje = "No se encontraron resultados para el medidor "+str(medidor)+". Intente ingresar el número correctamente!"
+        return render(request, "buscarDeuda.html",{"mensaje":mensaje}) 

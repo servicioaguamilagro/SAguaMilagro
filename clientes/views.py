@@ -126,7 +126,8 @@ def eliminar_cliente(request, id):
 def confirmar_eliminar_cliente(request, id):
     try:
         cliente = Cliente.objects.get(id=id)
-        cliente.delete()
+        cliente.detalle = 'eliminado'
+        cliente.save()
     except Cliente.DoesNotExist:
         raise Http404
     messages.success(request, "El usuario "+ cliente.nombres + " medidor número: "+ cliente.medidor +" a sido eliminado corectamente")

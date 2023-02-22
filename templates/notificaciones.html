@@ -43,25 +43,26 @@
             </thead>
             <tbody>
                 {% for cliente in clientes %}
-                <tr>
-                  <th scope="row">{{ cliente.nombres }}{% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}</th>
-                    
-                    <td>
-                        {% for c in cifras %}
-                            {% if cliente == c.id_usuario %}
-                                {% filter slugify %}{% trans c.mes %}{% endfilter %} / {{ c.anio }}<br>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                    <td>
-                        <!--El usuario tiene notificaciones-->
-                        {% if cliente.detalle == fecha %}
-                            <button title="Notificación enviada" type="button" class="btn-sm btn-outline-success" disabled><i class="fa-solid fa-envelope-circle-check"></i></button>
-                        {% else %}
-                            <a title="Notificar al usuario selecionado" class="btn btn-sm btn-outline-primary" href="/notificarusuario/{{cliente.id}}">&nbsp;<i class="fa-solid fa-envelope"></i>&nbsp;</a>
-                        {% endif %}
-                    </td>
-                </tr>
+                    {% if cliente.detalle != 'eliminado' %}
+                        <tr>
+                        <th scope="row">{{ cliente.nombres }}{% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}</th>
+                            <td>
+                                {% for c in cifras %}
+                                    {% if cliente == c.id_usuario %}
+                                        {% filter slugify %}{% trans c.mes %}{% endfilter %} / {{ c.anio }}<br>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <!--El usuario tiene notificaciones-->
+                                {% if cliente.detalle == fecha %}
+                                    <button title="Notificación enviada" type="button" class="btn-sm btn-outline-success" disabled><i class="fa-solid fa-envelope-circle-check"></i></button>
+                                {% else %}
+                                    <a title="Notificar al usuario selecionado" class="btn btn-sm btn-outline-primary" href="/notificarusuario/{{cliente.id}}">&nbsp;<i class="fa-solid fa-envelope"></i>&nbsp;</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
                 {% endfor %} 
                 </tbody>
         </table> 

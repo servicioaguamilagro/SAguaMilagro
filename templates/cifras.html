@@ -42,25 +42,26 @@
             </tr>
         </thead>
         <tbody>
-        
             {% for cliente in clientes %}
-            <tr>
-              <th scope="row">{{ cliente.medidor }}</th>
-                <td>{% if cliente.apellidos == None %} - {% else %} {{ cliente.apellidos }} {% endif %}{{ cliente.nombres }} </td>
-                <td>{{ cliente.cedula }}</td>
-                <!--<td>{{ cliente.email }}</td>
-                <td>{{ cliente.detalle }}</td>
-                <td>{{ cliente.direccion }}</td>
-                <td>{{ cliente.celular }}</td>
-                <td>{{ cliente.deuda }}</td>-->
-                <td>
-                    {% if cliente.ultima_cifra == fecha %}
-                        <a title="Ver cifras ingresadas" class="btn btn-sm btn-outline-warning " href="/ingresarcifra/{{cliente.id}}"><i class="fa-solid fa-eye"></i></a>
-                    {% else %}
-                        <a title="Ingresar nueva cifra" class="btn btn-sm btn-info " href="/ingresarcifra/{{cliente.id}}"><i class="fa-solid fa-plus"></i></a>
-                    {% endif %}
-                </td>
-            </tr>
+                {% if cliente.detalle != 'eliminado' %}
+                    <tr>
+                    <th scope="row">{{ cliente.medidor }}</th>
+                        <td>{% if cliente.apellidos == None %} - {% else %} {{ cliente.apellidos }} {% endif %}{{ cliente.nombres }} </td>
+                        <td>{{ cliente.cedula }}</td>
+                        <!--<td>{{ cliente.email }}</td>
+                        <td>{{ cliente.detalle }}</td>
+                        <td>{{ cliente.direccion }}</td>
+                        <td>{{ cliente.celular }}</td>
+                        <td>{{ cliente.deuda }}</td>-->
+                        <td>
+                            {% if cliente.ultima_cifra == fecha %}
+                                <a title="Ver cifras ingresadas" class="btn btn-sm btn-outline-warning " href="/ingresarcifra/{{cliente.id}}"><i class="fa-solid fa-eye"></i></a>
+                            {% else %}
+                                <a title="Ingresar nueva cifra" class="btn btn-sm btn-info " href="/ingresarcifra/{{cliente.id}}"><i class="fa-solid fa-plus"></i></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
             {% endfor %} 
             </tbody>
     </table> 

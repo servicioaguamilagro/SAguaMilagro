@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from home.views import home, cerrar_sesion, info_correo,superUser
+from home.views import home, cerrar_sesion, info_correo, superUser, calcular_valores
 from clientes.views import crear_cliente, listar_clientes, editar_cliente, actualizar_cliente, ver_cliente, eliminar_cliente, confirmar_eliminar_cliente
 from cifras.views import seleccion_clientes,ingresar_cifra, editar_cifras, actualizar_cifra
 from cobros.views import mostrar_clientes, calcular_cobro, GeneratePdf
@@ -29,6 +29,7 @@ urlpatterns = [
     path('', home, name="home"),
     path('infocorreo/', info_correo),
     path('logout/', cerrar_sesion, name="logout"),
+    path('buscardeuda/', calcular_valores),
     #Para la app clientes
     path('crearcliente/', crear_cliente, name="crearcliente"),
     path('clientes/', listar_clientes, name="listarclientes"),

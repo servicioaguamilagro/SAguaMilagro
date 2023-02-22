@@ -42,28 +42,30 @@
         </thead>
         <tbody>
             {% for cliente in clientes %}
-            <tr>
-              <th scope="row">{{ cliente.medidor }}</th>
-                <td>{% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}{{ cliente.nombres }}</td>
-                <td>{{ cliente.cedula }}</td>
-                <!--<td>{{ cliente.email }}</td>
-                <td>{{ cliente.detalle }}</td>
-                <td>{{ cliente.direccion }}</td>
-                <td>{{ cliente.celular }}</td>
-                <td>{{ cliente.deuda }}</td>-->
-                <td>
-                    {% if cliente.ultima_cifra == fecha %}
-                        {% if cliente.deuda == 's' %}
-                            <a title="Generar valores a pagar" class="btn btn-sm btn-success" href="/calcularcobro/{{cliente.id}}">&nbsp;<i class="fa-solid fa-dollar-sign"></i>&nbsp;</a>
-                        {% else %}
-                            <a title="Ver registro de valores cancelados" class="btn btn-sm btn-outline-primary" href="/calcularcobro/{{cliente.id}}">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
-                        {% endif %}
-                    {% else %}
-                        <a title="Ingresar cifra" class="btn btn-sm btn-outline-warning " href="/ingresarcifra/{{cliente.id}}"> <i class="fa-solid fa-plus"></i> </a>
-                        <a title="Valores desactualizados" class="btn btn-sm btn-outline-secondary " href="/calcularcobro/{{cliente.id}}">&nbsp;<i class="fa-solid fa-info"></i>&nbsp;</a>
-                    {% endif %}
-                </td>
-            </tr>
+                {% if cliente.detalle != 'eliminado' %}
+                    <tr>
+                    <th scope="row">{{ cliente.medidor }}</th>
+                        <td>{% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}{{ cliente.nombres }}</td>
+                        <td>{{ cliente.cedula }}</td>
+                        <!--<td>{{ cliente.email }}</td>
+                        <td>{{ cliente.detalle }}</td>
+                        <td>{{ cliente.direccion }}</td>
+                        <td>{{ cliente.celular }}</td>
+                        <td>{{ cliente.deuda }}</td>-->
+                        <td>
+                            {% if cliente.ultima_cifra == fecha %}
+                                {% if cliente.deuda == 's' %}
+                                    <a title="Generar valores a pagar" class="btn btn-sm btn-success" href="/calcularcobro/{{cliente.id}}">&nbsp;<i class="fa-solid fa-dollar-sign"></i>&nbsp;</a>
+                                {% else %}
+                                    <a title="Ver registro de valores cancelados" class="btn btn-sm btn-outline-primary" href="/calcularcobro/{{cliente.id}}">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
+                                {% endif %}
+                            {% else %}
+                                <a title="Ingresar cifra" class="btn btn-sm btn-outline-warning " href="/ingresarcifra/{{cliente.id}}"> <i class="fa-solid fa-plus"></i> </a>
+                                <a title="Valores desactualizados" class="btn btn-sm btn-outline-secondary " href="/calcularcobro/{{cliente.id}}">&nbsp;<i class="fa-solid fa-info"></i>&nbsp;</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
             {% endfor %} 
             </tbody>
     </table> 

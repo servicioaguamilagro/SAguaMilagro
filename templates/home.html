@@ -65,13 +65,27 @@
             
             <div class="container">
                 <div class="row">
-                    <div class="container mb-1 " style="max-width: 800px;">
-                        <h2 class ="text-secondary text-center pt-4 "><br> <i class="fa-solid fa-faucet-drip"></i> &nbsp; Bienvenido al Sistema de Cobros del Servicio de Agua Potable del GAD Parroquial de Milagro!</h2>
+                    <div class="container" style="max-width: 800px;">
+                        <h2 class ="text-secondary text-center pt-1 "><br> <i class="fa-solid fa-faucet-drip"></i> &nbsp;Sistema de Cobros del Servicio <br>de Agua Potable del GAD Parroquial de <br>Milagro</h2>
                     </div>
                     <div class="col-md-7">
-                         <div class="text-center d-none d-lg-block">
+                        <div class="">
                             {% load static %}
-                            <img class="img-fluid" style="max-width: 65%; height: auto" src="{% static 'img/gota.png' %}" alt="My image">
+                            <div class="text-center d-none d-lg-block">
+                                <img class="img-fluid" style="max-width: 50%; height: auto" src="{% static 'img/gota.png' %}" alt="My image">
+                            </div>
+                            <div class="py-3 row justify-content-center" >
+                                <div class="alert alert-info " style="max-width: 500px;" role="alert" >
+                                    <p class="text-secondary">Buscar deuda del servicio por medidor: </p>
+                                    <div class="form-floating" >
+                                        <form action="/buscardeuda/" class="d-flex" method="POST">
+                                            {% csrf_token %}
+                                            <input class="form-control me-2" style="max-width: 400px;" type="number" placeholder="Ingrese número de medidor Ej. '025'" aria-label="Search" name="buscar" value="" required>
+                                            <button title="Realizar la búsqueda" class="btn btn-info" type="submit"> <i class="fa-solid fa-magnifying-glass"></i> </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <h6 class ="text-secondary">Sistema solo para administradores, inicie sesión para utilizar los servicios que ofrece la aplicación.</h6>
                         </div>
                     </div>
