@@ -210,9 +210,13 @@ def calcular_valores(request):
                     
                     total = total + subtotal
                     total = round(total,2)
-        if cliente.apellidos == None:
-            apellido = ""
-        mensaje ="El medidor "+str(cliente.medidor)+" tiene una deuda de $"+str(total)+", correspondiente a "+cliente.nombres+" "+apellido+"." 
+        apellido = ""
+        if cliente.apellidos != None:
+            apellido = cliente.apellidos
+        if total == 0:
+            mensaje ="El medidor "+str(cliente.medidor)+" correspondiente a "+cliente.nombres+" "+str(apellido)+" no cuenta con deudas pendientes del servicio."
+        else:
+            mensaje ="El medidor "+str(cliente.medidor)+" tiene una deuda de $"+str(total)+", correspondiente a "+cliente.nombres+" "+str(apellido)+"." 
         return render(request, "buscarDeuda.html",{"mensaje":mensaje})
     else:
         mensaje = "No se encontraron resultados para el medidor "+str(medidor)+". Intente ingresar el número correctamente!"
