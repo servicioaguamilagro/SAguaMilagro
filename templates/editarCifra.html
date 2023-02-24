@@ -27,7 +27,7 @@
             <form action="/actualizarcifra/{{cifra.id}}" class="d-flex" method="POST">
                 {% csrf_token %}
                 <input class="form-control me-2" type="number" placeholder="Cifra actual del medidor" aria-label="Search" name="cifra" value="{{ cifra.cifra }}" required>
-                <button class="btn btn-success" type="submit">Guardar</button>&nbsp;&nbsp;
+                <button class="btn btn-primary" type="submit">Guardar</button>&nbsp;&nbsp;
                 <a class="btn btn-danger " href="/ingresarcifra/{{cliente.id}}">Cancelar</a>
             </form>
             
