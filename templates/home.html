@@ -66,13 +66,13 @@
             <div class="container">
                 <div class="row">
                     <div class="container" style="max-width: 800px;">
-                        <h3 class ="text-secondary text-center pt-1 "><br> <i class="fa-solid fa-faucet-drip"></i> &nbsp; Sistema de Cobros del<br> Servicio de Agua Potable del GAD<br> Parroquial de Milagro</h3>
+                        <h2 class ="text-secondary text-center pt-1 "><br> <i class="fa-solid fa-faucet-drip"></i> &nbsp; Sistema de Cobros del <br>Servicio de Agua Potable del GAD Parroquial<br>de Milagro - Atahualpa</h2>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 py-4">
                         <div class="">
                             {% load static %}
                             <div class="text-center d-none d-lg-block">
-                                <img class="img-fluid" style="max-width: 48%; height: auto" src="{% static 'img/gota.png' %}" alt="My image">
+                                <img class="img-fluid" style="max-width: 48%; height: auto" src="{% static 'img/gota1.png' %}" alt="My image">
                             </div>
                             <div class="py-3 row justify-content-center" >
                                 <div class="alert alert-info " style="max-width: 500px;" role="alert" >
@@ -90,14 +90,14 @@
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <div class="row  justify-content-center align-items-center py-3">
+                        <div class="row  justify-content-center align-items-center py-4">
                             <div class="col-auto bg-light p-5">
                                 <h4 class ="text-secondary text-center py-4" > Acceso al servicio </h4>
                                 {% if messages %}
                                     {% for m in messages %}
-                                    <div class="alert alert-danger" role="alert">
-                                        <i class="fa-solid fa-triangle-exclamation"></i>  {{ m }}
-                                    </div>
+                                        <div class="alert alert-danger" role="alert">
+                                            <i class="fa-solid fa-triangle-exclamation"></i>  {{ m }}
+                                        </div>
                                     {% endfor %}
                                 {% endif %}
                                 <form action="" method="POST">

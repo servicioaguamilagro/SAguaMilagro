@@ -6,20 +6,14 @@
 <div class="container mb-1 " style="max-width: 800px;">
     <h2 class="text-black-50 text-center py-3"><i class="fa-solid fa-square-plus"></i>&nbsp; Ingresar nuevos valores base </h2>
 </div>
-<div class="container mb-1 " style ="max-width: 900px;">
-    <form class="d-flex" >
-        <div style ="max-width: 200px;">
-            <a class="btn btn-outline-secondary" href="/configuraciones"><i class="fa-solid fa-chevron-left"></i> Regregar</a>&nbsp;&nbsp;&nbsp;
-        </div>
-        <div style ="max-width: 700px;">
-            <p class="text-danger py-1"><b>Nota:</b> los valores base no se pueden editar ni eliminar, si agrega nuevos valores no afectaran a las cifras ya registradas, antes de agregar nuevos valores asegurese de haber ingresado todas las cifras correspondientes al mes.</p>  
-        </div>
-   </form>
-</div>
-<div class="container py-1">      
+
+<div class="container py-3">      
     <div class="row ">
-        <div class="col-md-5">
-            <div class="container " style="max-width: 350px;">
+        <div class="col-md-5 row justify-content-center py-1" >
+            <div  style="max-width: 200px;">
+                <a class="btn btn-secondary" href="/configuraciones"><i class="fa-solid fa-chevron-left"></i> &nbsp; Regresar</a>
+            </div>
+            <div class="container py-5" style="max-width: 350px;">
                 {% if messages %}
                     {% for m in messages %}
                         <div class="alert alert-secondary" role="alert">
@@ -27,7 +21,7 @@
                         </div>
                     {% endfor %}
                 {% endif %}
-                <div class="alert alert-secondary py-3" >
+                <div class="alert alert-secondary   py-3" >
                     <h6 class="text-center">Ingresar valores</b></h6>
                     <form  method="POST" autocomplete="off">
                         {% csrf_token %}
@@ -55,7 +49,10 @@
             </div>
         </div>
         <div class="col-md-7">
-            <div class="container " style="max-width: 550px;">
+            <div class="alert alert-danger" role="alert" style ="max-width: 900px;">
+                <p class="text-danger ">Los valores base no se pueden editar ni eliminar, si agrega nuevos valores base estos no afectarán las cifras ya ingresadas. Antes de agregar nuevos valores base asegúrese de haber ingresado todas las cifras correspondientes al mes. </p>  
+            </div>
+            <div class="container " style="max-width: 900px;">
                 <table class="table table-responsive table-striped">
                     <thead>
                         <tr>
@@ -76,7 +73,7 @@
                             <td class="text-center">{{ valor.porcentaje_mora }}&nbsp;%</td>
                         </tr>
                         {% endfor %} 
-                        </tbody>
+                    </tbody>
                 </table> 
             </div>
         </div>
