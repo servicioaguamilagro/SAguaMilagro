@@ -100,8 +100,6 @@ def ingresar_cifra(request, id):
             auxcifra = int(utimacifra.cifra)
         else:
             auxcifra = 0
-        print(auxcifra)
-        print(cifra)
         if auxcifra < int(cifra):
             #guardo valores
             c =Cifras()

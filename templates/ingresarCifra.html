@@ -59,7 +59,7 @@
               <th scope="row">{% filter slugify %}{% trans tcifras.mes %}{% endfilter %}</th>
                 <td>{{ tcifras.anio }}</td>
                 <td>{{ tcifras.cifra }}</td>
-                <td>{% if tcifras.estado == 'n' %} Pendiente {% else %} Pagado {% endif %}</td>
+                <td>{% if tcifras.estado == 'n' %} <p class="text-center text-white bg-danger">Pendiente</p> {% else %}<p class="text-center text-white bg-success">Pagado </p> {% endif %}</td>
                 <!--<td>{{ cliente.email }}</td>
                 <td>{{ cliente.detalle }}</td>
                 <td>{{ cliente.direccion }}</td>

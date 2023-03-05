@@ -45,7 +45,7 @@
                 {% for cliente in clientes %}
                     {% if cliente.detalle != 'eliminado' %}
                         <tr>
-                        <th scope="row">{{ cliente.nombres }}{% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}</th>
+                        <th scope="row">{% if cliente.apellidos == None %}  {% else %} {{ cliente.apellidos }} {% endif %}{{ cliente.nombres }}</th>
                             <td>
                                 {% for c in cifras %}
                                     {% if cliente == c.id_usuario %}
