@@ -145,7 +145,6 @@ def actualizar_cifra(request, id):
         cliente = Cliente.objects.get(medidor=c.id_usuario)
     except Cliente.DoesNotExist:
         raise Http404
-    
     ruta = '/ingresarcifra/'
     ruta = ruta+str(cliente.id)
     print (ruta)
@@ -161,7 +160,6 @@ def actualizar_cifra(request, id):
         #obtengo cifra ingresada
         cifra = request.POST.get("cifra")
         if auxcifra < int(cifra):
-            
             if cifra != "":
                 c.cifra = int(cifra)
                 if c.save() != True:
@@ -173,6 +171,5 @@ def actualizar_cifra(request, id):
             r = '/editarcifra/'
             r = r+str(c.id)
             return redirect(r)
-    
     return redirect(ruta)
 

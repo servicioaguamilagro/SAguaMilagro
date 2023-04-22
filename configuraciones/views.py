@@ -1,7 +1,10 @@
+from django.http import Http404
+from django.db.models import Q
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages
 from .models import ValoresBase
+from clientes.models import Cliente
 from django.contrib.auth.models import User
 # Create your views here.
 
@@ -89,3 +92,39 @@ def eliminar_usuario(request):
         messages.success(request, "Usurio eliminado")
         return redirect("/")
     return render(request, "eliminarAdmin.html")
+
+#metodo para listar clientes
+def listar_clienteseliminados(request):
+    busqueda = request.GET.get("buscar")
+    try:
+        clientes = Cliente.objects.filter(
+                Q(detalle__icontains = 'eliminado') 
+            ).distinct()
+    except Cliente.DoesNotExist:
+                raise Http404
+    print (clientes)
+    if busqueda:
+        messages.success(request, " Los resultados encontrados para la busqueda '"+busqueda+"' son:")
+        try:
+            clientes = Cliente.objects.filter(detalle = 'eliminado').filter(
+                Q(nombres__icontains = busqueda) |
+                Q(apellidos__icontains = busqueda)|
+                Q(medidor__icontains = busqueda) | 
+                Q(cedula__icontains = busqueda) 
+            ).distinct()
+        except Cliente.DoesNotExist:
+            raise Http404
+    return render(request, "restablecerCliente.html", {"clientes": clientes})
+
+#restablecer cliente eliminado
+def restablecer(request, id):
+    try:
+        cliente = Cliente.objects.get(pk=id)
+    except Cliente.DoesNotExist:
+        raise Http404
+    cliente.detalle = ""
+    if cliente.save() != True:
+        messages.success(request, "El cliente <"+str(cliente.nombres)+" "+str(cliente.apellidos)+">, a sido restablecido correctamente!")
+    else:
+        messages.success(request, "A ocurrido un error! Vuelva a intentarlo.")
+    return render(request, "restablecerCliente.html", )

@@ -20,7 +20,7 @@ from clientes.views import crear_cliente, listar_clientes, editar_cliente, actua
 from cifras.views import seleccion_clientes,ingresar_cifra, editar_cifras, actualizar_cifra
 from cobros.views import mostrar_clientes, calcular_cobro, GeneratePdf
 from notificaciones.views import notificaciones, notificar_usuario, notificar_todos
-from configuraciones.views import configuraciones, nuevo_administrador, nuevos_valores, actualizar_usuario,eliminar_usuario
+from configuraciones.views import configuraciones, nuevo_administrador, nuevos_valores, actualizar_usuario,eliminar_usuario, listar_clienteseliminados, restablecer
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -58,6 +58,8 @@ urlpatterns = [
     path('actualizarusuario/<int:id>',actualizar_usuario),
     path('eliminarusuario/',eliminar_usuario),
     path('superuser/',superUser),
+    path('recuperarusuario/',listar_clienteseliminados),
+    path('restablecerusuario/<int:id>',restablecer),
     #reseteo contraseñas
     path('reset_password/',auth_views.PasswordResetView.as_view(template_name="contraseñaResetear.html"), name='password_reset'),
     path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(template_name="contraseñaEnvio.html"), name='password_reset_done'),
