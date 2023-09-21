@@ -156,12 +156,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #configuracion de gmail
 
+#EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST='smtp.gmail.com'
+#EMAIL_USE_TLS=True
+#EMAIL_PORT=587
+#EMAIL_HOST_USER='servicioaguamilagro@gmail.com'
+#EMAIL_HOST_PASSWORD='nwvfqkmcuksqvntn'
+
+#configuracion de gmail
+
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST='smtp-mail.outlook.com'
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
-EMAIL_HOST_USER='servicioaguamilagro@gmail.com'
-EMAIL_HOST_PASSWORD='nwvfqkmcuksqvntn'
+EMAIL_HOST_USER='servicioagua-demo@outlook.com'
+EMAIL_HOST_PASSWORD='uwxgcaovwtuhngxi'
 
 SESSION_EXPIRE_SECONDS = 1200  # 5 min
 SESSION_TIMEOUT_REDIRECT = '/'
